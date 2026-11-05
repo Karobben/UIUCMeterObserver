@@ -58,3 +58,7 @@ Source: user-supplied records and observations in the â€œClarify Tick Or Ticketâ
 ## Observation classes
 
 The dashboard derives an `Observation class` feature: 42 enforcement signals (38 ticket records plus 4 sightings) and 2 no-ticket observations. This derived feature is included in the dashboard table and filtered CSV downloads; the original CSV/Excel preserve their original observation types. The default chart selection is enforcement signals. Hourly charts use the 40 exact-time signals; the other 2 reported tickets have a window or upper bound. No-ticket intervals are not assigned fabricated point timestamps. These classes are evidence labels, not a ticket probability estimate.
+
+## Observation calendar
+
+The dashboard includes a Monday-first monthly calendar with separate ticket, sighting, and no-ticket counts. Choose a month, use previous/next, or jump to the latest matching record. Select a day for original times, IDs and notes. Dataset filters apply; the chart-category selector and weekday hover do not restrict the calendar. Empty dates mean no matching records, not no enforcement.
