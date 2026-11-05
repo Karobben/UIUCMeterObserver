@@ -62,3 +62,11 @@ The dashboard derives an `Observation class` feature: 42 enforcement signals (38
 ## Observation calendar
 
 The dashboard includes a Monday-first monthly calendar with separate ticket, sighting, and no-ticket counts. Choose a month, use previous/next, or jump to the latest matching record. Select a day for original times, IDs and notes. Dataset filters apply; the chart-category selector and weekday hover do not restrict the calendar. Empty dates mean no matching records, not no enforcement.
+
+## User-reported patrol pattern and parking strategy
+
+The user reports that enforcement usually visits twice a day, once in the morning and once in the afternoon. Their described strategy is to treat tickets already visible on other cars as evidence of a morning visit, skip morning meter payment, and pay for the afternoon. The user also reports that receiving two tickets is possible.
+
+This is a user-reported working assumption and strategy, not a verified patrol schedule or a recommendation supported by the dataset. A ticket seen on another vehicle does not establish when it was issued, that the morning patrol is finished, or that enforcement will not return. Do not assume a maximum of two visits or two tickets, or that an existing ticket prevents another citation.
+
+For future observations, distinguish the time a ticket was seen from its printed issue time. Record morning and afternoon visits separately when observed. Record actual meter-payment intervals, parking intervals, and each ticket ID separately; link tickets to the same parking session only when supported. Do not infer an unpaid no-ticket session or create a second ticket from this strategy alone.

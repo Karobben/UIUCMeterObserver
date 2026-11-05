@@ -49,6 +49,16 @@ Baseline as of November 5, 2026: **44 rows**, **36 historical tickets with uniqu
 
 ## Validation before committing
 
+### User-reported patrol assumption and strategy
+
+Preserve the user's report that enforcement usually comes once in the morning and once in the afternoon. Their described strategy is: after seeing tickets on other cars, treat the morning visit as having occurred, skip morning meter payment, and pay in the afternoon. The user reports that receiving two tickets is possible.
+
+Treat this as an unverified behavioral hypothesis and a reported user strategy, not an established enforcement rule or an automatic instruction to recommend nonpayment. Do not infer that a morning visit is complete, that there cannot be a return visit, that exactly two visits occur, or that two tickets is a maximum. A sighting of a ticket on another car is distinct from observing its issuance; preserve both observation time and printed issue time if available.
+
+If implementing session or patrol tracking, keep observed morning/afternoon visits, planned versus actual payments, and actual ticket outcomes separate. Preserve multiple distinct ticket IDs for the same session when supported; do not merge them merely because a first ticket already exists. Do not fabricate sessions, successful ticket skips, second tickets, payment statuses, or conditional risk estimates from this hypothesis. The current dataset count remains unchanged by this documentation update.
+
+### Checks
+
 1. Rebuild HTML and confirm the builder's embedded count matches CSV rows.
 2. Check nonempty ticket IDs are unique and known uncertainty notes remain present.
 3. Confirm no `__DATA__` placeholder remains in generated HTML.
