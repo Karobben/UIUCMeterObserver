@@ -45,7 +45,7 @@ For data changes, edit the CSV without changing its 13 column names, then rebuil
 - Approximate windows and “before” bounds may overlap a time filter, but must not be assigned fabricated exact hours in hourly charts.
 - This selected log measures recorded frequency, not ticket probability. Do not present a ticket percentage as a reliable unpaid-session risk without representative session exposure data.
 
-Baseline as of November 4, 2026: **43 rows**, **36 historical tickets with unique IDs**, **2 additional reported tickets**, **3 officer sightings**, **2 no-ticket observations**. Update this baseline when adding records; it is not a permanent row-count limit.
+Baseline as of November 5, 2026: **44 rows**, **36 historical tickets with unique IDs**, **2 additional reported tickets**, **4 officer sightings**, **2 no-ticket observations**. Update this baseline when adding records; it is not a permanent row-count limit.
 
 ## Validation before committing
 

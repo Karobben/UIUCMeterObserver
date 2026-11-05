@@ -19,9 +19,9 @@ The dashboard supports street, date, Monday–Sunday calendar week, weekday, wor
 | `outputs/parking_enforcement/build_dashboard.py` | Embeds the CSV into the dashboard template |
 | `build_parking.mjs` | Original records, normalization, deduplication, and CSV/Excel export |
 
-## Data as of November 4, 2026
+## Data as of November 5, 2026
 
-43 rows: 36 historical tickets with unique IDs, 2 additional reported tickets concerning other drivers, 3 officer sightings, and 2 no-ticket observations. The latest sighting is November 4, 2026 at 10:00 AM on Mathews Avenue.
+44 rows: 36 historical tickets with unique IDs, 2 additional reported tickets concerning other drivers, 4 officer sightings, and 2 no-ticket observations. The latest sighting is November 5, 2026 at 10:25 AM on Mathews Avenue.
 
 - October 22, 2026 ticket `26PE101880` appears once. Its recent observation was merged with its historical ticket record.
 - January 16, 2026 tickets `26PE400158` and `26PE400159` have the same timestamp and location but different IDs. Both remain separate tickets; whether they represent one parking incident is unconfirmed.

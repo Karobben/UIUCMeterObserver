@@ -23,35 +23,36 @@ add('10/15/2026','2–3 PM',time('2:00 PM'),time('3:00 PM'),'Additional reported
 add('10/16/2026','Before 9:45 AM',null,time('9:45 AM'),'Additional reported ticket','Friend; user report','Not reported','Unknown','Ticket reported; resolution unknown','9:45 AM is an exclusive upper bound, not exact issue time. Ticket ID unavailable; possible historical overlap cannot be checked.');
 add('10/16/2026','9:45–10:20 AM',time('9:45 AM'),time('10:20 AM'),'No-ticket observation','User','TA weekly meeting','Unconfirmed','No ticket reported','Reported parking interval. Meter payment unconfirmed.');
 add('11/04/2026','10:00 AM',time('10:00 AM'),null,'Officer sighting','User observation','Not applicable','Not applicable','Not reported','User saw parking enforcement officer on Mathews Avenue. Today resolved to November 4, 2026 (America/Chicago). No ticket issuance reported.');
+add('11/05/2026','10:25 AM',time('10:25 AM'),null,'Officer sighting','User observation','Not applicable','Not applicable','Not reported','User reported seeing the enforcement car again on Mathews Avenue at 10:25, interpreted as AM from the morning-sighting context. Date resolved to November 5, 2026 (America/Chicago). No ticket issuance reported.');
 rows.sort((a,b)=>a[0]-b[0]||((a[3]??0)-(b[3]??0)));
-if(rows.length!==43||new Set(rows.filter(r=>r[7]).map(r=>r[7])).size!==36)throw Error('Row/ID reconciliation failed');
+if(rows.length!==44||new Set(rows.filter(r=>r[7]).map(r=>r[7])).size!==36)throw Error('Row/ID reconciliation failed');
 const wb=Workbook.create();const sh=wb.worksheets.add('Parking records');sh.showGridLines=false;
-sh.getRange('A1:M44').values=[headers,...rows];
-sh.getRange('A1:M44').format.font={name:'Arial',size:10,color:'#17283B'};
-sh.getRange('A1:M44').format.verticalAlignment='center';
+sh.getRange('A1:M45').values=[headers,...rows];
+sh.getRange('A1:M45').format.font={name:'Arial',size:10,color:'#17283B'};
+sh.getRange('A1:M45').format.verticalAlignment='center';
 sh.getRange('A1:M1').format={fill:'#233D56',font:{name:'Arial',size:10,bold:true,color:'#FFFFFF'},wrapText:true,rowHeight:34};
-sh.getRange('A2:A44').setNumberFormat('mm/dd/yyyy');
-sh.getRange('D2:E44').setNumberFormat('h:mm AM/PM');
+sh.getRange('A2:A45').setNumberFormat('mm/dd/yyyy');
+sh.getRange('D2:E45').setNumberFormat('h:mm AM/PM');
 const widths=[15,15,23,14,14,22,28,18,44,24,21,42,105];
-for(let i=0;i<13;i++){const col=String.fromCharCode(65+i);sh.getRange(col+'1:'+col+'44').format.columnWidth=widths[i];}
-sh.getRange('A2:M44').format.rowHeight=32;
-sh.getRange('M2:M44').format.wrapText=true;
+for(let i=0;i<13;i++){const col=String.fromCharCode(65+i);sh.getRange(col+'1:'+col+'45').format.columnWidth=widths[i];}
+sh.getRange('A2:M45').format.rowHeight=32;
+sh.getRange('M2:M45').format.wrapText=true;
 for(let i=0;i<rows.length;i++){if(i%2===1)sh.getRange('A'+(i+2)+':M'+(i+2)).format.fill='#F0F4F8';}
 sh.freezePanes.freezeRows(1);sh.freezePanes.freezeColumns(2);
-const tbl=sh.tables.add('A1:M44',true,'ParkingRecords');
+const tbl=sh.tables.add('A1:M45',true,'ParkingRecords');
 sh.getRange('O1').values=[['Source']];
 sh.getRange('O2').values=[['Clarify Tick Or Ticket — conversation 6adbb32e-4014-83e9-8f00-673ce0979849']];
-sh.getRange('O4').values=[['43 distinct rows: 36 historical tickets + 2 reported tickets + 3 sightings + 2 no-ticket observations.']];
+sh.getRange('O4').values=[['44 distinct rows: 36 historical tickets + 2 reported tickets + 4 sightings + 2 no-ticket observations.']];
 sh.getRange('O6').values=[['Blank start/end times mean unavailable or not applicable. Point events use Start time; interval meanings are in Time / description and notes.']];
 sh.getRange('O8').values=[['Two additional reported tickets retained separately as requested; no IDs available to exclude overlap with the historical list.']];
 sh.getRange('O1:O8').format.columnWidth=110;
 sh.getRange('O1:O8').format.font={name:'Arial',size:10};
 wb.recalculate();
-console.log((await wb.inspect({kind:'table',range:'Parking records!A36:M44',tableMaxRows:8,tableMaxCols:13,maxChars:2500})).ndjson);
-const preview=await wb.render({sheetName:'Parking records',range:'A34:M44',scale:1,format:'png'});
+console.log((await wb.inspect({kind:'table',range:'Parking records!A36:M45',tableMaxRows:8,tableMaxCols:13,maxChars:2500})).ndjson);
+const preview=await wb.render({sheetName:'Parking records',range:'A34:M45',scale:1,format:'png'});
 await fs.writeFile(out+'/preview.png',new Uint8Array(await preview.arrayBuffer()));
 await (await SpreadsheetFile.exportXlsx(wb)).save(out+'/parking_enforcement_unified.xlsx');
 const csv=[headers,...rows.map(r=>r.map((v,i)=>v instanceof Date?v.toISOString().slice(0,10):i===3||i===4?v===null?'':new Date(Math.round(v*86400000)).toISOString().slice(11,16):v))].map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n');
 await fs.writeFile(out+'/parking_enforcement_unified.csv','\uFEFF'+csv);
-console.log('Verified: 43 rows, 36 unique ticket IDs, Oct 22 deduplicated.');
+console.log('Verified: 44 rows, 36 unique ticket IDs, Oct 22 deduplicated.');
 
