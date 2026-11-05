@@ -54,3 +54,7 @@ python3 outputs/parking_enforcement/build_dashboard.py
 The dataset builder regenerates CSV and Excel from records embedded in the script, overwriting those outputs. If adding records there, update its row-count validation and worksheet ranges as well. Preserve CSV-only edits before running it.
 
 Source: user-supplied records and observations in the “Clarify Tick Or Ticket” conversation and subsequent updates. Records have not been independently verified.
+
+## Observation classes
+
+The dashboard derives an `Observation class` feature: 42 enforcement signals (38 ticket records plus 4 sightings) and 2 no-ticket observations. This derived feature is included in the dashboard table and filtered CSV downloads; the original CSV/Excel preserve their original observation types. The default chart selection is enforcement signals. Hourly charts use the 40 exact-time signals; the other 2 reported tickets have a window or upper bound. No-ticket intervals are not assigned fabricated point timestamps. These classes are evidence labels, not a ticket probability estimate.
